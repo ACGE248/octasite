@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+   
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <title>Search Products</title>
+  </head>
+  <body>
+
+    {% extends 'navbar.html' %}
+
+    
+    
+     <!-- 
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container-fluid">
+          <a class="navbar-brand" href=".."> <img src="../static/logo.png"> PriceSpoiler</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=".">Advanced Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+              </ul>
+          </div>
+      </div>3d6ba8
+
+      </nav>
+      -->
+      {% block contents %}
+<style>
+  body {
+    background: linear-gradient(179deg, #771366, #328092);
+  }
+
+
+  .large-header {
+    position: relative;
+    width: 100%;
+    background: #111;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    z-index: 1;
+ }
+ 
+ 
+ .main-title {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    color: #F9F1E9;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+ }
+ 
+ 
+ .main-title .thin {
+    font-weight: 200;
+ }
+ 
+ @media only screen and (max-width: 768px) {
+    .demo .main-title {
+       font-size: 3em;
+    }
+ }
+
+ 
+</style>
+
+
+    <main role="main" class="container">
+      <div class="container demo">
+        <div class="content">
+           <div id="large-header" class="large-header">
+            
+          
+           </div>
+        </div>
+     </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" crossorigin="anonymous"></script>
+      <br>
+        <form method="GET" action=".">
+          <div class="form-row">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="searchtitle" placeholder="Title contains..." aria-label="Title contains..." aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-info" type="Search" id="searchtitle" >Search</button>
+              </div>
+            </div>       
+          </div>
+          
+          <div class="form-row">
+            <div class="input-group mb-3 ">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button">Search By</button>
+              </div>
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="category">Categories</label>
+              </div>
+              <select class="custom-select" id="category" name="searchcat">
+                <option selected>Choose...</option>
+                {% for cat in caty %}
+                <option value="{{ cat.category }}">{{ cat.category|capfirst }}</li></option>
+                    {% endfor %}
+              </select>
+
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="Region">Region</label>
+              </div>
+              <select class="custom-select" id="Region" name="searchregion">
+                <option selected>Choose...</option>
+                {% for region in regio %}
+                <option value="{{ region.region }}">{{ region.region }}</option>
+                    {% endfor %}
+              </select>
+            </div>
+
+          </div>
+          <div class="form-row">
+
+            <div class="form-group col-md-4">
+              <label for="pricetag">Value</label>
+
+              <select id="pricetag" class="form-control" name="pricetag">
+                <option selected>Choose...</option>
+                    {% for tag in pricetags %}
+                <option value="{{ tag.pricetag }}">{{ tag.pricetag|floatformat }}</li></option>
+                    {% endfor %}
+              
+              
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="Webmoney" name="Webmoney">
+              <label class="custom-control-label" for="Webmoney">Webmoney</label>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="Paypal" name="Paypal">
+              <label class="custom-control-label" for="Paypal">Paypal</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="Crypto" name="Crypto">
+              <label class="custom-control-label" for="Crypto">Crypto</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="custom-control custom-switch ">
+              <input type="checkbox" class="custom-control-input" id="Mastercard" name="Mastercard" >
+              <label class="custom-control-label" for="Mastercard">Mastercard</label>
+            </div>
+          </div>
+        
+          <button type="submit" class="btn btn-primary">Search</button>
+          
+        </form>
+  
+        <hr />
+        {% regroup products by pricetag as product_pricetags %}        
+        <script>
+          $('#myTab a').on('click', function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+          })
+        </script>
+        
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          {% for tag,productss in product_pricetags|dictsort:0 %}
+          <li class="nav-item ">
+            <a class="nav-link" id="{{tag|floatformat}}-tab" data-toggle="tab" href="#tab{{tag|floatformat}}" role="tab" aria-controls="{{tag|floatformat}}" aria-selected="false">{{tag|floatformat}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        
+          <div class="tab-content">
+
+            {% for tag,productss in product_pricetags %}
+            <div class="tab-pane " id="tab{{tag|floatformat}}" role="tabpanel" aria-labelledby="tab{{tag|floatformat}}">
+              
+              
+             
+              <table class="table table-striped" id="restable">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Region</th>
+                    <th scope="col"> <a href="">Value </a> </th>
+                    <th scope="col">Prices</th>
+                    <th scope="col">Source / Updated On</th>
+                    <th scope="col">Link </th>
+                  </tr>
+                </thead>
+                {% for key in currency.country %}
+                <li></li>
+                <li>{{key}}</li>
+                {% endfor %}
+                {% for product in productss %}
+
+                <tbody>
+
+                  <tr>
+                    <th scope="row">{{ product }}</th>
+                    <td>{{ product.category|capfirst }}</td>
+                    <td>{{ product.region }}</td>
+                    <td>{{ product.pricetag|floatformat }}</td>
+                    <td>{{ product.prices }}</td>
+                    <td>{{ product.source }} <br> {{ product.timestamp|timesince  }}</td>
+                    <td><a href="{{product.links}}" target="_blank" ><button type="button" class="btn btn-success">Buy</button></a></td>
+                  </tr>
+                  
+                </tbody>
+                
+                {% endfor %}
+              </table>
+            </div>
+            {% endfor %}
+            </div>
+            
+          </div>
+
+            
+
+      
+        <!-- 
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Category</th>
+              <th scope="col">Region</th>
+              <th scope="col"> <a href="">Value</a> </th>
+              <th scope="col">Prices</th>
+              <th scope="col">Source / Updated On</th>
+              <th scope="col">Link </th>
+            </tr>
+          </thead>
+          <tbody>        
+            {% for product in products %}
+            <tr>
+              <th scope="row">{{ product.title }}</th>
+              <td>{{ product.category|capfirst }}</td>
+              <td>{{ product.region }}</td>
+              <td>{{ product.pricetag }}</td>
+              <td>{{ product.prices }}</td>
+              <td>{{ product.source }} <br> {{ product.timestamp|timesince }}</td>
+              <td><a href="{{product.links}}" target="_blank" ><button type="button" class="btn btn-success">Buy</button></a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      -->
+        <nav aria-label="Page navigation">
+          <ul class="pagination justify-content-center">
+            {% if products.has_previous %}
+            <li class="page-item ">
+
+              <a class="page-link " href="{{ request.get_full_path }}&page={{ products.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item disabled"><a class="page-link" href="#">{{ products.number }} of {{ products.paginator.num_pages }}</a></li>
+            {% endif %}
+            {% if products.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="{{ request.get_full_path }}&page={{ products.next_page_number }}">Next</a>
+            <li class="page-item"><a class="page-link" href="{{ request.get_full_path }}&page={{ products.paginator.num_pages }}">Last</a></li>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+
+      </main>
+
+
+
+      <!--
+        <script>
+          $( function() {
+            $( "#tabs" ).tabs();
+          } );
+        </script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+
+        {% regroup products by pricetag as product_pricetags %} 
+        <div id="tabs">
+          <ul>
+            {% for tag,productss in product_pricetags %}
+            <li><a href="#tabs{{tag}}">{{tag}}</a></li>
+            {%endfor%}
+          </ul>
+          {% for tag,productss in product_pricetags %}
+          <div id="tabs{{tag}}">
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Region</th>
+                  <th scope="col"> <a href="">Value</a> </th>
+                  <th scope="col">Prices</th>
+                  <th scope="col">Source / Updated On</th>
+                  <th scope="col">Link </th>
+                </tr>
+              </thead>
+            {% for product in productss %}
+            <tbody> 
+            <tr>
+              <th scope="row">{{ product }}</th>
+              <td>{{ product.category|capfirst }}</td>
+              <td>{{ product.region }}</td>
+              <td>{{ product.pricetag }}</td>
+              <td>{{ product.prices }}</td>
+              <td>{{ product.source }} <br> {{ product.timestamp }}</td>
+              <td><a href="{{product.links}}" target="_blank" ><button type="button" class="btn btn-success">Buy</button></a></td>
+            </tr>
+          </tbody> 
+            {%endfor%}
+          </table>
+          </div>
+          {%endfor%}
+          
+        </div>
+
+      -->
+
+      {%endblock%}
+
+  </body>
+</html>

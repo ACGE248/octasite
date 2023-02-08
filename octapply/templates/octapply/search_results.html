@@ -1,0 +1,27 @@
+
+<head>
+<style>
+  .listy {
+    background-color: black;
+    color: white;
+    margin: 20px;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+<h1>Search Results</h1>
+{% block content %}
+<form action="." method="get">
+  <input name="q" type="text" placeholder="Search..." value="{{request.GET.q}}">
+  <button id="search_submit" type="submit" >Submit</button>
+</form>
+  <ol>
+  {% for item in listofdata%}
+
+  <li><div class = "listy">{{ item.title }} | {{ item.category }} | {{item.region}} <br> {{item.prices}} <br>{{item.links}} <br></div></li>
+
+  {% endfor %}
+</ol>
+{% endblock %}
+</body>

@@ -1,0 +1,272 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>OctApply | {{cat}} {{reg}} {{pricetag}} {{symbol}}</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/css/mdb.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <style>
+            @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
+            body {
+                background: linear-gradient(179deg, #237385, #263A38);
+                
+            }
+            table { 
+                width: 100%; 
+                margin-bottom: 10px;
+                border-collapse: collapse; 
+              }
+              /* Zebra striping 
+                     tr:nth-of-type(even) { 
+                background:linear-gradient(70deg, rgb(182, 182, 182), #fff);
+              }
+            tr:nth-of-type(odd) { 
+                background:linear-gradient(70deg, #fff,rgb(201, 200, 200));
+              } 
+              */
+            tr:nth-of-type(even) { 
+                background:linear-gradient(to left,#8e9eab , #eef2f3);
+              }
+            tr:nth-of-type(odd) { 
+                background:linear-gradient(to right, #8e9eab , #eef2f3);
+              }
+              .headresult {
+                  background:rgb(182, 182, 182) !important;
+                  color: white!important;
+                  
+                  border-radius: 30px;
+    
+              }
+              thead {
+                  
+                  border-radius: 30px;
+                  background: white;
+              }
+              thead td{
+                  text-align: center ;
+                  font-weight: normal;
+              }
+              th { 
+                background: rgb(240, 237, 237); 
+                background: white;
+                color: white; 
+                font-weight: bold; 
+              }
+              td { 
+                padding: 10px; 
+                padding-left: 10px;
+                margin: 5px;
+                 
+                text-align: left; 
+              }
+              
+    
+              .container {
+                
+                color: white;
+                padding-bottom: 50px;
+    
+              }
+              #header {
+                background: linear-gradient(179deg, #541d38, #237385);
+                border-radius: 20px;
+                box-shadow: black;
+                margin-top: 5%;
+            }
+    
+             .cont {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+             }
+             table td{
+                text-align:center;
+             }
+             option {
+                 background: grey;
+                 color: white;
+                 font-family: 'FontAwesome';
+             }
+             .form-control {
+                 border: 2px solid grey;
+                 border-radius:30px ;
+             }
+    
+              @media 
+    only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+    
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr { 
+            display: block; 
+        }
+        
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr { 
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+        
+        tr { border: 1px solid rgb(228, 226, 226);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            word-wrap: break-word;
+            width: 100%;
+        }
+        tr:nth-of-type(even) { 
+            background: rgb(255, 255, 255); 
+          }
+        tr:nth-of-type(odd) { 
+            background: rgb(233, 231, 231); 
+          }
+        td { 
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 0px dotted rgb(95, 86, 86); 
+            padding-bottom: 15px;
+            text-align: center;
+            position: relative;
+            padding-left: 25%; 
+            word-wrap: break-word;
+    
+        }
+        
+        td:before { 
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 10px;
+            left: 3px;
+            width: 45%; 
+            padding-right: 1px; 
+            white-space: nowrap;
+    
+        }
+    
+        /*
+        Label the data
+        cot class = row justify-content-center align-items-center
+        */
+        td:nth-of-type(1):before { content: "Title";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold;}
+        td:nth-of-type(1):after { content: "\A"; }
+        td:nth-of-type(2):before { content: "Category";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold;  }
+        td:nth-of-type(3):before { content: "Region";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold; }
+        td:nth-of-type(4):before { content: "Source";text-align: left;margin-right: 10px;padding-right: 10px;font-weight: bold; }
+        td:nth-of-type(5):before { content: "Value";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold; }
+        td:nth-of-type(6):before { content: "Price";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold; }
+        td:nth-of-type(7):before { content: "Updated on";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold; }
+        td:nth-of-type(8):before { content: "Link";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold; }
+        td:nth-of-type(9):before { content: "GPA"; }
+        td:nth-of-type(10):before { content: "Arbitrary Data"; }
+    }
+    
+    
+    
+    
+    
+        .results tr[visible='false'],
+        .no-result{
+        display:none;
+        }
+    
+        .results tr[visible='true']{
+        display:table-row;
+        }
+    
+        .counter{
+        padding:8px; 
+        color:#ccc;
+        }
+    
+    
+    
+    
+        </style>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href=".."> <img src="../static/Octopus/2.png"> OctApply</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    
+                  <li class="nav-item active">
+                      <a class="nav-link" href="..">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/categories">Categories</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="../adsearch">Advanced Search</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/contact-us">Contact Us</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+  
+        </nav>    
+
+<div class="container">
+
+    <div class="row justify-content-center align-items-center">
+    <div class="col-4">
+
+ 
+    </div>
+ 
+    <div class="col-11" id = "user_info">
+ 
+        <table class="results">
+         <thead > 
+             <tr class="headresult">
+                 <td>Title</td>
+                 <td>University</td>
+                 <td>Fee</td>
+                 <td>Period</td>
+                 <td>fall_deadline</td>
+                 <td>winter_deadline</td>
+                 <td>Updated on</td>
+                 <td>Program Link</td>
+             </tr>
+         </thead>
+            <tbody>
+                {% for prof in professors %} 
+                <tr>
+					<td>{{prof.name}}</td>
+					<td style="text-transform: capitalize;">{{prof.university}}</td>
+					<td>{{prof.email}}</td>
+					<td>{{prof.position}}</td>
+					<td>{{prof.fall_deadline}}</td>
+					<td>{{prof.winter_deadline}}</td>
+					<td>{{prof.timestamp|timesince}} ago</td>
+					<td><a href="{% url 'professor' slug=prof.slug %}" style="color:black;"><button class="btn"  style="border-radius:30px !important;">Apply</button></a></td>
+				</tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    </div>
+ </div>
+ 
+</body>
+
+
+</html>

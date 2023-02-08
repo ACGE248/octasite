@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>OctApply | Professor - {{professor.name}}</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="http://127.0.0.1:8000/static/Octopus/2.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Serenity - v4.11.0
+  * Template URL: https://bootstrapmade.com/serenity-bootstrap-corporate-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <style>
+    @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
+    body {
+        background: linear-gradient(179deg, #237385, #263A38);
+        
+    }
+    table { 
+        width: 100%; 
+        margin-bottom: 10px;
+        border-collapse: collapse; 
+      }
+      /* Zebra striping 
+             tr:nth-of-type(even) { 
+        background:linear-gradient(70deg, rgb(182, 182, 182), #fff);
+      }
+    tr:nth-of-type(odd) { 
+        background:linear-gradient(70deg, #fff,rgb(201, 200, 200));
+      } 
+      */
+    tr:nth-of-type(even) { 
+        background:linear-gradient(to left,#8e9eab , #eef2f3);
+      }
+    tr:nth-of-type(odd) { 
+        background:linear-gradient(to right, #8e9eab , #eef2f3);
+      }
+      .headresult {
+          background:rgb(182, 182, 182) !important;
+          color: white!important;
+          
+          border-radius: 30px;
+
+      }
+      thead {
+          
+          border-radius: 30px;
+          background: white;
+      }
+      thead td{
+          text-align: center ;
+          font-weight: normal;
+      }
+      th { 
+        background: rgb(240, 237, 237); 
+        background: white;
+        color: white; 
+        font-weight: bold; 
+      }
+      td { 
+        padding: 10px; 
+        padding-left: 10px;
+        margin: 5px;
+         
+        text-align: left; 
+      }
+      
+
+
+
+     .cont {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+     }
+     table td{
+        text-align:center;
+     }
+     option {
+         background: grey;
+         color: white;
+         font-family: 'FontAwesome';
+     }
+     .form-control {
+         border: 2px solid grey;
+         border-radius:30px ;
+     }
+
+      @media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+/* Force table to not be like tables anymore */
+table, thead, tbody, th, td, tr { 
+    display: block; 
+}
+
+/* Hide table headers (but not display: none;, for accessibility) */
+thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+tr { border: 1px solid rgb(228, 226, 226);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    word-wrap: break-word;
+    width: 100%;
+}
+tr:nth-of-type(even) { 
+    background: rgb(255, 255, 255); 
+  }
+tr:nth-of-type(odd) { 
+    background: rgb(233, 231, 231); 
+  }
+td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 0px dotted rgb(95, 86, 86); 
+    padding-bottom: 15px;
+    text-align: center;
+    position: relative;
+    padding-left: 25%; 
+    word-wrap: break-word;
+
+}
+
+td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 10px;
+    left: 3px;
+    width: 45%; 
+    padding-right: 1px; 
+    white-space: nowrap;
+
+}
+
+/*
+Label the data
+cot class = row justify-content-center align-items-center
+*/
+td:nth-of-type(1):before { content: "Title";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold;}
+td:nth-of-type(1):after { content: "\A"; }
+td:nth-of-type(2):before { content: "Category";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold;  }
+td:nth-of-type(3):before { content: "Region";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold; }
+td:nth-of-type(4):before { content: "Source";text-align: left;margin-right: 10px;padding-right: 10px;font-weight: bold; }
+td:nth-of-type(5):before { content: "Value";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold; }
+td:nth-of-type(6):before { content: "Price";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold; }
+td:nth-of-type(7):before { content: "Updated on";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold; }
+td:nth-of-type(8):before { content: "Link";text-align: left;margin-right: 0px;padding-right: 0px;font-weight: bold; }
+td:nth-of-type(9):before { content: "GPA"; }
+td:nth-of-type(10):before { content: "Arbitrary Data"; }
+}
+
+
+
+
+
+.results tr[visible='false'],
+.no-result{
+display:none;
+}
+
+.results tr[visible='true']{
+display:table-row;
+}
+
+.counter{
+padding:8px; 
+color:#ccc;
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+
+   <!-- ======= Header ======= -->
+   <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1 class="text-light"><a href=""><img src="{% static 'Octopus/2.png' %}" alt="" class="img-fluid">OctApply</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+       
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="getstarted" href="/">Home</a></li>
+          <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="about.html">About us</a></li>
+              <li><a href="/universities/">Terms and Policies</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="/universities/">Universities</a></li>
+          <li><a href="/program_list/">Programs</a></li>
+          <li><a class="active" href="/portfolio.html">Professors</a></li>
+          <li><a href="/portfolio.html">Scholarships</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container" data-aos="fade-up">
+      <h1>Welcome to OctApply</h1>
+      <h2>We are team of talented designers making websites with Bootstrap</h2>
+      <img src="http://127.0.0.1:8000/static/Octopus/2.png">
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+   
+        <div class="container">
+
+            <div class="row justify-content-center align-items-center">
+            <div class="col-4">
+        
+         
+            </div>
+         
+            <div class="col-11" id = "user_info">
+         
+                <table class="results">
+                 <thead > 
+                     <tr class="headresult">
+                         <td>Title</td>
+                         <td>University</td>
+                         <td>Fee</td>
+                         <td>Period</td>
+                         <td>fall_deadline</td>
+                         <td>winter_deadline</td>
+                         <td>Updated on</td>
+                         <td>Program Link</td>
+                     </tr>
+                 </thead>
+                    <tbody>
+                        {% for prof in professors %} 
+                        <tr>
+                            <td>{{prof.name}}</td>
+                            <td style="text-transform: capitalize;">{{prof.university}}</td>
+                            <td>{{prof.email}}</td>
+                            <td>{{prof.position}}</td>
+                            <td>{{prof.fall_deadline}}</td>
+                            <td>{{prof.winter_deadline}}</td>
+                            <td>{{prof.timestamp|timesince}} ago</td>
+                            <td><a href="{% url 'professor' slug=prof.slug %}" style="color:black;"><button class="btn"  style="border-radius:30px !important;">Apply</button></a></td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+         </div>
+
+
+
+
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>OctApply</h3>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Terms of service</a></li>
+              <li><a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Serenity</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/serenity-bootstrap-corporate-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

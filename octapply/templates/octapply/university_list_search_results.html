@@ -1,0 +1,36 @@
+{% load static %}
+
+    {% if universitylist %}
+<div class="row" id="search-results">
+    {% for university in universitylist %}
+    <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+      <div class="box" data-aos="fade-up" data-aos-delay="100">
+        <span class="advanced">{{university.ranking}}</span>
+        <h3><a href="{{university.slug}}"> {{university.title}} </a></h3>
+        <h3>{{university.country}}<span> / {{university.state}}</span></h3>
+        <ul>
+          <li>{{university.country}}</li>
+          <li>{{university.state}}</li>
+          <li><a href="{{university.website}}" class="badge badge-info text-dark">Website</a></li>
+          <li>Number of Programs{{university.uni}}</li>
+          <li>Number of Professors</li>
+        </ul>
+        <div class="btn-wrap">
+          <a href="{{university.slug}}" class="btn-buy">View List</a>
+          <a href="#" class="btn-buy">Professor</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <h3 class="ui header center aligned">No results!</h3>               
+{% endif %}
+
+
+
+
+  {% if is_search_view %}
+  {% include 'octapply/university_list_loadmore.html' %}
+  {% endif %}
+
