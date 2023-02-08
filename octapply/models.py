@@ -58,7 +58,7 @@ class Professor(models.Model):
     google_scholar = models.URLField(null=True,blank = True)
     research_gate = models.URLField(null=True,blank = True)
     rate = models.URLField(null=True,blank = True)
-    university = models.ManyToManyField(University)
+    university = models.ForeignKey(University,on_delete=models.CASCADE,related_name="uniprof")
     timestamp = models.DateTimeField(auto_now_add=True)
     thumbnail = models.ImageField(null=True,blank = True)
     slug = models.SlugField()

@@ -42,8 +42,23 @@ class ProgramList(ListView):
     
 class ProfessorList(ListView):
     model = Professor    
+    paginate_by=10
+    def get_queryset(self):
+        search=self.request.GET.get("search")
+        university=self.request.GET.get("university")
+        country=self.request.GET.get("country")
+        department=self.request.GET.get("department")
+        adsearch=Professor.objects.all()
+        
+        if search:
+            adsearch=Professor.objects.filter(Q(name__icontains=search))
+            #order=order.filter(Q(user=False) & Q(type='1')).order_by(order_by)
+        elif search is None:
+            adsearch=Professor.objects.all()
+        else:
+            adsearch=Professor.objects.filter(Q(university=university))
 
-
+        return adsearch
 POSTS_PER_PAGE = 2
 
 def uni_list_view(request):
