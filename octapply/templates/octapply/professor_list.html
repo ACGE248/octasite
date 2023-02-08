@@ -36,7 +36,7 @@
   <style>
     @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
     body {
-        background: linear-gradient(179deg, #237385, #263A38);
+        background: #263A38;
         
     }
     table { 
@@ -292,18 +292,28 @@ color:#ccc !important;
     </div>
   </header><!-- End Header -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero">
-    <div class="hero-container" data-aos="fade-up">
-      <h1>All professors in one place</h1>
-      <h2>Find best programs suited with your path</h2>
-      <img src="{% static 'Octopus/2.png' %}">
-    </div>
 
-  </section><!-- End Hero -->
 
   <main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
 
+      <div class="breadcrumb-hero"style="background:#263A38 ;">
+
+        <div class="container" >
+          <div class="breadcrumb-hero" style="background:linear-gradient(180deg, #263A38, #553042);border-radius:5%;border:1px dottet #263A38;">
+            <div class="hero-container" data-aos="fade-up">
+              <span><img src="{% static 'Octopus/2.png' %}"></span>
+              <h1>All professors in one place</h1>
+              <h2>Find best programs suited with your path</h2>
+            </div>
+            
+            <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- End Breadcrumbs -->
     <!-- ======= About Section ======= -->
    
         <div class="container">
@@ -320,9 +330,30 @@ color:#ccc !important;
                             <path d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z"></path>
                           </svg>
                         </div>
-                        <input id="search" name="search" type="text" value="{{search}}" placeholder="Search..." />
+                       
+                        {% if searchnames is not none %} 
+                        <input id="search" name="searchnames" type="text" value="{{searchnames}}" placeholder="{{searchnames}}" />
+                        {% else %}
+                        <input id="search" name="searchnames" type="text" placeholder="Search name..." />
+                        {% endif%}
                         <div class="result-count">
-                          <span>108 </span>results</div>
+                          <span>{{adsearch.count}}  </span>results</div>
+                      </div>
+                    </div>
+                    <div class="basic-search">
+                      <div class="input-field">
+                        <div class="icon-wrap">
+                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                            <path d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z"></path>
+                          </svg>
+                        </div>
+                        {% if searchinterest is not none %} 
+                        <input id="search" name="searchinterest" type="text" value="{{searchinterest}}" placeholder="{{searchinterest}}" />
+                        {% else %}
+                        <input id="search" name="searchinterest" type="text" placeholder="Interest areas..." />
+                        {% endif%}
+                        <div class="result-count">
+                          <span>{{adsearch.count}} </span>results</div>
                       </div>
                     </div>
                     <div class="advance-search">
@@ -330,31 +361,55 @@ color:#ccc !important;
                       <div class="row">
                         <div class="input-field">
                           <div class="input-select">
+                            
                             <select data-trigger="" name="university">
-                              <option placeholder="" value="{{university}}">University</option>
-                              <option>ACCESSORIES</option>
-                              <option>SUBJECT B</option>
-                              <option>SUBJECT C</option>
+                              {% if university is not None %} 
+                              <option value="">University</option>
+                              {% for prof in adsearch %}
+                              {% ifchanged prof.university %} 
+                              <option selected value="{{ prof.university }}">{{ prof.university }}</option>
+                              {% endifchanged %}
+                                {% endfor %}
+                              
+                              {% else %}
+                              <option selected value="">University</option>
+                              {% for prof in adsearch %}
+                              {% ifchanged prof.university %} 
+                              <option value="{{ prof.university }}">{{ prof.university }}</option>
+                              {% endifchanged %}
+                                {% endfor %}
+                              
+                              {% endif%}
+
+
+                              
+
                             </select>
                           </div>
                         </div>
                         <div class="input-field">
                           <div class="input-select">
                             <select data-trigger="" name="country">
-                              <option placeholder="" value="{{country}}">Country</option>
-                              <option>GREEN</option>
-                              <option>SUBJECT B</option>
-                              <option>SUBJECT C</option>
+                              <option placeholder="" value="{{country}}">{{country}}</option>
+                              {% for prof in adsearch %}
+                              {% ifchanged prof.university %} 
+                              <option value="{{ prof.university }}">{{ prof.university }}</option>
+                              {% endifchanged %}
+                                {% endfor %}
+
                             </select>
                           </div>
                         </div>
                         <div class="input-field">
                           <div class="input-select">
                             <select data-trigger="" name="department">
-                              <option placeholder="" value="{{department}}">Department</option>
-                              <option>SIZE</option>
-                              <option>SUBJECT B</option>
-                              <option>SUBJECT C</option>
+                              <option placeholder="" value="{{department}}">{{department}}</option>
+                              {% for prof in adsearch %}
+                              {% ifchanged prof.department %} 
+                              <option value="{{ prof.department }}">{{ prof.department }}</option>
+                              {% endifchanged %}
+                                {% endfor %}
+
                             </select>
                           </div>
                         </div>
@@ -378,14 +433,14 @@ color:#ccc !important;
                 <table class="results">
                  <thead > 
                      <tr class="headresult">
-                         <td>Title</td>
+                         <td>Name</td>
                          <td>University</td>
+                         <td>Department</td>
                          <td>E-mail</td>
                          <td>Position</td>
-                         <td>Fall Deadline</td>
-                         <td>Winter Deadline</td>
-                         <td>Type</td>
-                         <td>Program Link</td>
+                         <td>Interest fields</td>
+                         <td>Major</td>
+                         <td>More info</td>
                      </tr>
                  </thead>
                     <tbody>
@@ -393,17 +448,11 @@ color:#ccc !important;
                         <tr>
                             <td>{{prof.name}}</td>
                             <td style="text-transform: capitalize;">{{prof.university}}</td>
+                            <td>{{prof.department}}</td>
                             <td>{{prof.email}}</td>
                             <td>{{prof.position}}</td>
-                            <td>{{prof.fall_deadline| date:"M d" }}</td>
-                            <td>{{prof.winter_deadline| date:"M d" }}</td>
-                            {% if prof.thesis %} 
-                            <td>Thesis-Based </td>
-                            {% elif prog.course %} 
-                            <td>Course-Based </td>
-                            {% elif prog.project %} 
-                            <td>Project-Based </td>
-                            {%endif%}
+                            <td>{{prof.interest_field }}</td>
+                            <td>{{prof.major }}</td>
                             <td><a href="{% url 'professor' slug=prof.slug %}" style="color:black;"><button class="btn"  style="border-radius:30px !important;">Details</button></a></td>
                         </tr>
                         {%endfor%}

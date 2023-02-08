@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render
 from django.views.generic import ListView
 from octapply.models import Professor, Program, University
@@ -43,6 +44,7 @@ class ProgramList(ListView):
 class ProfessorList(ListView):
     model = Professor    
     paginate_by=10
+    '''
     def get_queryset(self):
         search=self.request.GET.get("search")
         university=self.request.GET.get("university")
@@ -57,8 +59,33 @@ class ProfessorList(ListView):
             adsearch=Professor.objects.all()
         else:
             adsearch=Professor.objects.filter(Q(university=university))
-
         return adsearch
+    '''
+def is_valid (param):
+    return param !="" and param is not None
+def professor_list(request):
+    adsearch=Professor.objects.all()
+    searchnames=request.GET.get("searchnames")
+    searchinterest = request.GET.get("searchinterest")
+    uniOptions = request.GET.get("university")
+    departmentOptions = request.GET.get("department")
+    #uniOptions = request.GET.get("university")
+    if is_valid(searchnames):
+        adsearch = adsearch.filter(Q(name__icontains=searchnames) | Q(interest_field__icontains=searchnames)).distinct()
+    elif is_valid(searchinterest):
+        adsearch = adsearch.filter(Q(name__icontains=searchinterest) | Q(interest_field__icontains=searchinterest)).distinct()
+    if is_valid(uniOptions):
+        uniprof = University.objects.all()
+        uniOptions = uniprof.get(title=uniOptions)
+        adsearch = adsearch.filter(university = uniOptions.id)
+    context = {
+        "adsearch" : adsearch,
+        "university" : uniOptions,
+        "department" : departmentOptions,
+        "searchnames" : searchnames,
+        "searchinterest" : searchinterest
+    }
+    return render(request, "octapply/professor_list.html", context)
 POSTS_PER_PAGE = 2
 
 def uni_list_view(request):

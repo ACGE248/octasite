@@ -31,7 +31,7 @@ urlpatterns = [
     #path('universities/<slug>/', views.university, name='university'),
     path('program_list/', views.ProgramList.as_view()),
     path('program/<slug>/', views.program, name='program'),
-    path('professor_list/', views.ProfessorList.as_view()),
+    path('professor_list/', views.professor_list, name='professor_list'),
     path('professor/<slug>', views.professor, name='professor'),
     path('<slug>/programs/', views.programs, name='programs'),
     path('<slug>/professors/', views.professors, name='professors'),
